@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manajemen Stok & Lokasi Barang</title>
+    <style>
+        body { font-family: sans-serif; padding: 20px; background-color: #f4f4f4; }
+        .container { max-width: 1000px; margin: auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+        h1 { font-size: 24px; }
+        .form-group { display: flex; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
+        input, select { padding: 8px; border: 1px solid #ddd; border-radius: 4px; }
+        button { padding: 8px 15px; cursor: pointer; border: none; border-radius: 4px; color: white; }
+        .btn-green { background-color: #28a745; }
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; }
+        th, td { border: 1px solid #ddd; padding: 10px; text-align: left; }
+        th { background-color: #f8f9fa; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Manajemen Stok & Lokasi Barang - 2026</h1>
+    
+    <div class="form-group">
+        <input type="text" id="kodeBarang" placeholder="Kode Barang">
+        <input type="text" id="deskripsi" placeholder="Deskripsi">
+        <input type="text" id="lokasi" placeholder="Lokasi">
+        <select id="kategori">
+            <option value="PCR">PCR</option>
+            <option value="MC BIG">MC BIG</option>
+            <option value="MC SMALL">MC SMALL</option>
+        </select>
+        <input type="number" id="stockGws" placeholder="Stock GWS" style="width: 80px;">
+        <button class="btn-green" onclick="tambahBarang()">Tambah Barang</button>
+    </div>
+
+    <table id="tabelBarang">
+        <thead>
+            <tr>
+                <th>CODE</th>
+                <th>DESKRIPSI</th>
+                <th>LOKASI</th>
+                <th>KAT</th>
+                <th>STOCK GWS</th>
+            </tr>
+        </thead>
+        <tbody>
+            </tbody>
+    </table>
+</div>
+
+<script>
+    function tambahBarang() {
+        // Mengambil nilai dari input
+        const kode = document.getElementById('kodeBarang').value;
+        const deskripsi = document.getElementById('deskripsi').value;
+        const lokasi = document.getElementById('lokasi').value;
+        const kategori = document.getElementById('kategori').value;
+        const stockGws = document.getElementById('stockGws').value;
+
+        if (kode === '' || deskripsi === '') {
+            alert('Kode dan Deskripsi harus diisi!');
+            return;
+        }
+
+        // Menambahkan baris ke tabel
+        const table = document.getElementById('tabelBarang').getElementsByTagName('tbody')[0];
+        const newRow = table.insertRow();
+
+        newRow.insertCell(0).innerText = kode;
+        newRow.insertCell(1).innerText = deskripsi;
+        newRow.insertCell(2).innerText = lokasi;
+        newRow.insertCell(3).innerText = kategori;
+        newRow.insertCell(4).innerText = stockGws;
+
+        // Membersihkan form
+        document.getElementById('kodeBarang').value = '';
+        document.getElementById('deskripsi').value = '';
+        document.getElementById('lokasi').value = '';
+        document.getElementById('stockGws').value = '';
+    }
+</script>
+
+</body>
+</html>
